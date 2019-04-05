@@ -3,6 +3,8 @@ function computerPlay () {
     return (options[Math.floor(Math.random() * (3-0) + 0)]);
 }
 
+// Game logic
+
 function logic (a,b){
     if (a == b){
         return ("tie");
@@ -21,6 +23,8 @@ function logic (a,b){
     }
 }
 
+// Logs results to the console
+
 function play (playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     if (logic(playerSelection, computerSelection) == "tie"){
@@ -34,11 +38,23 @@ function play (playerSelection, computerSelection) {
     }
 }
 
+// Asks for correct user input until it gets one
+
+function input_filter(){
+    var usr_inp = prompt("What's your sign?").toLowerCase();
+    while (usr_inp !== "rock" && usr_inp !== "paper" && usr_inp !== "scissors"){
+        usr_inp = prompt ("Wrong input, Your options are: rock, paper, scissors. Try again:").toLowerCase();
+    }
+        return (usr_inp);
+}
+
+// Main function
+
 function game(){
     var player = 0;
     var comp = 0;
     while (player < 5 && comp < 5) {
-        var result = play(prompt("What's your play?"), computerPlay());
+        var result = play(input_filter(), computerPlay());
         console.log(result[1]);
         if (result[0] == "computer"){
             comp += 1;
